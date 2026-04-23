@@ -1,1693 +1,819 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dimensions of DNA: A Multidisciplinary Perspective</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* CSS Reset and Variables */
-        :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #9b59b6;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --success: #27ae60;
-            --warning: #f39c12;
-            --danger: #e74c3c;
-            --text: #333;
-            --text-light: #7f8c8d;
-            --white: #ffffff;
-            --gradient: linear-gradient(135deg, #9b59b6, #3498db);
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background-color: var(--white);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--secondary);
-            transition: var(--transition);
-        }
-
-        a:hover {
-            color: var(--accent);
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            border-radius: 4px;
-            font-weight: 600;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-            color: var(--white);
-        }
-
-        .btn-secondary {
-            background: var(--white);
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        .btn-accent {
-            background: var(--accent);
-            color: var(--white);
-        }
-
-        .btn-accent:hover {
-            background: var(--secondary);
-            color: var(--white);
-        }
-
-        .card {
-            background: var(--white);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Header & Navigation */
-        header {
-            background-color: var(--white);
-            box-shadow: var(--shadow);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--primary);
-            font-weight: 600;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: var(--gradient);
-            color: var(--white);
-            padding: 10rem 0 5rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
-            opacity: 0.3;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .hero-btns {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        /* About Section */
-        .about {
-            background-color: var(--light);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            color: var(--primary);
-        }
-
-        .about-image {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-
-        /* Topics Section */
-        .topics {
-            background-color: var(--white);
-        }
-
-        .topics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .topic-card {
-            padding: 2rem;
-            height: 100%;
-        }
-
-        .topic-card h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .topic-card ul {
-            list-style-type: none;
-        }
-
-        .topic-card li {
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .topic-card li::before {
-            content: '•';
-            color: var(--accent);
-            position: absolute;
-            left: 0;
-        }
-
-        /* Speakers Section */
-        .speakers {
-            background-color: var(--light);
-        }
-
-        .speakers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .speaker-card {
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .speaker-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 1rem;
-            border: 4px solid var(--accent);
-        }
-
-        .speaker-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .speaker-title {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-        }
-
-        /* Schedule Section */
-        .schedule {
-            background-color: var(--white);
-        }
-
-        .schedule-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .schedule-tab {
-            padding: 0.8rem 1.5rem;
-            background: var(--light);
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-            margin: 0.5rem;
-        }
-
-        .schedule-tab.active {
-            background: var(--gradient);
-            color: var(--white);
-        }
-
-        .schedule-content {
-            display: none;
-        }
-
-        .schedule-content.active {
-            display: block;
-        }
-
-        .schedule-item {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            gap: 1rem;
-            padding: 1.5rem;
-            border-bottom: 1px solid #eee;
-            align-items: center;
-        }
-
-        .schedule-item:last-child {
-            border-bottom: none;
-        }
-
-        .schedule-time {
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .schedule-title {
-            font-weight: 600;
-        }
-
-        .schedule-speaker {
-            color: var(--text-light);
-            text-align: right;
-        }
-
-        /* Registration Section */
-        .registration {
-            background-color: var(--light);
-        }
-
-        .registration-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .registration-card {
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .registration-card.featured {
-            transform: scale(1.05);
-            border: 2px solid var(--accent);
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 1rem 0;
-        }
-
-        .price span {
-            font-size: 1rem;
-            color: var(--text-light);
-        }
-
-        .features {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
-        .features li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .features li::before {
-            content: '✓';
-            color: var(--success);
-            position: absolute;
-            left: 0;
-        }
-
-        /* Venue Section */
-        .venue {
-            background-color: var(--white);
-        }
-
-        .venue-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .venue-map {
-            height: 300px;
-            background: var(--light);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        /* Sponsors Section */
-        .sponsors {
-            background-color: var(--light);
-        }
-
-        .sponsor-tiers {
-            margin-bottom: 3rem;
-        }
-
-        .sponsor-tier {
-            margin-bottom: 2rem;
-        }
-
-        .tier-title {
-            text-align: center;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent);
-        }
-
-        .sponsor-logos {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .sponsor-logo {
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .sponsor-logo img {
-            max-height: 100%;
-            filter: grayscale(100%);
-            transition: var(--transition);
-        }
-
-        .sponsor-logo img:hover {
-            filter: grayscale(0%);
-        }
-
-        /* Scientific Board Section */
-        .scientific-board {
-            background-color: var(--white);
-        }
-
-        .board-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .board-member {
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .board-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 1rem;
-            border: 3px solid var(--secondary);
-        }
-
-        /* Resources Section */
-        .resources {
-            background-color: var(--light);
-        }
-
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .resource-card {
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .resource-icon {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        /* Repositories Section */
-        .repositories {
-            background-color: var(--white);
-        }
-
-        .repo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .repo-card {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .repo-logo {
-            height: 60px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Contact Section */
-        .contact {
-            background-color: var(--light);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            color: var(--accent);
-            width: 30px;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-control {
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            border-color: var(--accent);
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(155, 89, 182, 0.2);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 3rem 0 1.5rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            color: var(--white);
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .footer-links a:hover {
-            color: var(--white);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--white);
-            border-radius: 8px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .modal-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-light);
-        }
-
-        .modal-body {
-            padding: 1.5rem;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .about-content,
-            .venue-content,
-            .contact-content {
-                grid-template-columns: 1fr;
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Dr. Adanela Musaraj — High-Stakes Knowledge Arbitrage Consultant for institutional clients: Banks, UN agencies, EU agencies, International NGOs. Specializing in program evaluation, TRL3-7 assessments, IP evaluation, scientific due diligence. Fully remote international conference services with ISBN, ISSN, ORCID, DOI, ROR indexing."/>
+  <meta name="keywords" content="evaluator, assessor, interreg, World Bank, IMF, program evaluation, project evaluation, startup evaluation, IP evaluation, TRL3-7 assessments, scientific-policy-finance interface, health biotechnology, EU compliance, NACE classification"/>
+  <meta name="author" content="Dr. Adanela Musaraj"/>
+  <meta name="robots" content="index, follow"/>
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Dr. Adanela Musaraj — High-Stakes Knowledge Arbitrage"/>
+  <meta property="og:description" content="Scientific-Policy-Finance Interface Consultant specializing in Health & Biotechnology Systems. Institutional evaluation services for Banks, UN, EU, NGOs."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://health.scientia-naturalis.org"/>
+  
+  <!-- Structured Data for AI Indexability -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dr. Adanela Musaraj",
+    "jobTitle": "Scientific-Policy-Finance Interface Consultant",
+    "description": "High-Stakes Knowledge Arbitrage in Health & Biotechnology Systems. Specializing in program evaluation, project evaluation, startup evaluation, IP evaluation, TRL3-7 assessments.",
+    "url": "https://health.scientia-naturalis.org",
+    "email": "mailto:adanela.musaraj@yahoo.fr",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Scientia Naturalis",
+      "url": "https://scientia-naturalis.org"
+    },
+    "knowsAbout": [
+      "Program Evaluation",
+      "Project Evaluation", 
+      "Startup Evaluation",
+      "IP Evaluation",
+      "TRL3-7 Assessments",
+      "Health Biotechnology",
+      "EU Compliance Navigation",
+      "NACE Classification Q86/K65",
+      "Scientific Due Diligence"
+    ],
+    "areaServed": "Worldwide",
+    "availableLanguage": ["English", "French", "Albanian"],
+    "offers": {
+      "@type": "Service",
+      "serviceType": "High-Stakes Knowledge Arbitrage Consulting",
+      "provider": {"@type": "Person", "name": "Dr. Adanela Musaraj"},
+      "areaServed": "Global",
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "serviceUrl": "https://health.scientia-naturalis.org",
+        "availableLanguage": "English"
+      }
+    }
+  }
+  </script>
+  
+  <!-- Conference/Indexing Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "International Conference Advisory Services",
+    "description": "Fully remote international conference services with ISBN, ISSN, ORCID, DOI, and ROR indexing support for academic and institutional publications.",
+    "provider": {"@type": "Person", "name": "Dr. Adanela Musaraj"},
+    "serviceOutput": {
+      "@type": "CreativeWork",
+      "identifier": [
+        {"@type": "PropertyValue", "propertyID": "ISBN", "value": "Available upon engagement"},
+        {"@type": "PropertyValue", "propertyID": "ISSN", "value": "Available upon engagement"},
+        {"@type": "PropertyValue", "propertyID": "ORCID", "value": "Integrated for researcher profiles"},
+        {"@type": "PropertyValue", "propertyID": "DOI", "value": "Assigned to deliverables"},
+        {"@type": "PropertyValue", "propertyID": "ROR", "value": "Institutional identifier mapping"}
+      ]
+    },
+    "areaServed": "Worldwide",
+    "availableLanguage": "English"
+  }
+  </script>
+
+  <!-- Tailwind CSS CDN (for prototyping; use build process for production) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            ink: '#0e0f13',
+            paper: '#f5f2ec',
+            gold: '#b8922e',
+            'gold-light': '#d4a84b',
+            slate: '#2b2d3a',
+            mid: '#6b6d7d',
+            rule: '#d9d3c7',
+            'accent-bg': '#1a1c26',
+            'glass-bg': 'rgba(26, 28, 38, 0.65)',
+            'glass-border': 'rgba(184, 146, 46, 0.12)'
+          },
+          borderRadius: {
+            '2xl': '1rem',
+            '3xl': '1.5rem'
+          },
+          spacing: {
+            '8n': '0.5rem',    // 8px
+            '16n': '1rem',     // 16px
+            '24n': '1.5rem',   // 24px
+            '32n': '2rem',     // 32px
+            '40n': '2.5rem',   // 40px
+            '48n': '3rem',     // 48px
+            '64n': '4rem',     // 64px
+            '80n': '5rem',     // 80px
+            '96n': '6rem'      // 96px
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['DM Sans', 'system-ui', 'sans-serif'],
+            mono: ['DM Mono', 'monospace']
+          },
+          fontSize: {
+            'fluid-h1': 'clamp(2.5rem, 5vw, 4.5rem)',
+            'fluid-h2': 'clamp(1.75rem, 3.5vw, 2.75rem)',
+            'fluid-h3': 'clamp(1.35rem, 2.5vw, 1.85rem)',
+            'fluid-body': 'clamp(0.9rem, 1.2vw, 1.05rem)',
+            'fluid-sm': 'clamp(0.75rem, 1vw, 0.875rem)',
+            'fluid-xs': 'clamp(0.625rem, 0.8vw, 0.75rem)'
+          },
+          boxShadow: {
+            'umbra-penumbra': `
+              0 1px 2px rgba(0,0,0,0.08),
+              0 4px 8px rgba(0,0,0,0.06),
+              0 12px 24px rgba(0,0,0,0.04),
+              0 24px 48px rgba(0,0,0,0.02),
+              0 48px 96px rgba(0,0,0,0.01)
+            `,
+            'umbra-penumbra-hover': `
+              0 2px 4px rgba(184,146,46,0.12),
+              0 8px 16px rgba(184,146,46,0.09),
+              0 16px 32px rgba(184,146,46,0.06),
+              0 32px 64px rgba(184,146,46,0.03),
+              0 64px 128px rgba(184,146,46,0.015)
+            `,
+            'glass': `
+              0 1px 1px rgba(0,0,0,0.05),
+              0 4px 6px rgba(0,0,0,0.03),
+              0 10px 20px rgba(0,0,0,0.02),
+              0 20px 40px rgba(0,0,0,0.01),
+              0 40px 80px rgba(0,0,0,0.005)
+            `
+          },
+          transitionTimingFunction: {
+            'premium': 'cubic-bezier(0.23, 1, 0.32, 1)'
+          },
+          transitionDuration: {
+            '400': '400ms'
+          },
+          keyframes: {
+            'grain-shift': {
+              '0%': { transform: 'translate(0, 0)' },
+              '10%': { transform: 'translate(-1%, -1%)' },
+              '20%': { transform: 'translate(1%, 0.5%)' },
+              '30%': { transform: 'translate(-0.5%, 1%)' },
+              '40%': { transform: 'translate(0.5%, -0.5%)' },
+              '50%': { transform: 'translate(-1%, 0.5%)' },
+              '60%': { transform: 'translate(1%, -1%)' },
+              '70%': { transform: 'translate(-0.5%, 1%)' },
+              '80%': { transform: 'translate(0.5%, -0.5%)' },
+              '90%': { transform: 'translate(-1%, 1%)' },
+              '100%': { transform: 'translate(0, 0)' }
+            },
+            'cursor-pulse': {
+              '0%, 100%': { transform: 'scale(1)', opacity: '0.6' },
+              '50%': { transform: 'scale(1.15)', opacity: '0.35' }
             }
-
-            .hero h1 {
-                font-size: 2.8rem;
-            }
+          },
+          animation: {
+            'grain-shift': 'grain-shift 8s steps(10) infinite',
+            'cursor-pulse': 'cursor-pulse 2s ease-in-out infinite'
+          }
         }
+      }
+    }
+  </script>
 
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                flex-direction: column;
-                align-items: center;
-                padding: 2rem 0;
-                box-shadow: var(--shadow);
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: var(--transition);
-                z-index: 999;
-            }
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-            }
+  <style>
+    /* ── CORE RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 300;
+      background: #0e0f13;
+      color: #f5f2ec;
+      font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+      line-height: 1.8;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-            .nav-links li {
-                margin: 1rem 0;
-            }
+    /* ── FLUID TYPOGRAPHY ── */
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+    h2 { font-size: clamp(1.75rem, 3.5vw, 2.75rem); }
+    h3 { font-size: clamp(1.35rem, 2.5vw, 1.85rem); }
+    h4 { 
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(0.625rem, 0.8vw, 0.75rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #d4a84b;
+      margin-bottom: 0.6rem;
+    }
 
-            .hamburger {
-                display: block;
-            }
+    /* ── PREMIUM TRANSITIONS ── */
+    .transition-premium {
+      transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .transition-premium-fast {
+      transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1), opacity 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
 
-            .hero h1 {
-                font-size: 2.2rem;
-            }
+    /* ── GLASSMORPHISM CARD ── */
+    .glass-card {
+      background: rgba(26, 28, 38, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 0.5px solid rgba(184, 146, 46, 0.12);
+      border-radius: 1rem;
+      box-shadow: 
+        0 1px 2px rgba(0,0,0,0.08),
+        0 4px 8px rgba(0,0,0,0.06),
+        0 12px 24px rgba(0,0,0,0.04),
+        0 24px 48px rgba(0,0,0,0.02),
+        0 48px 96px rgba(0,0,0,0.01);
+    }
+    .glass-card:hover {
+      border-color: rgba(184, 146, 46, 0.28);
+      box-shadow: 
+        0 2px 4px rgba(184,146,46,0.12),
+        0 8px 16px rgba(184,146,46,0.09),
+        0 16px 32px rgba(184,146,46,0.06),
+        0 32px 64px rgba(184,146,46,0.03),
+        0 64px 128px rgba(184,146,46,0.015);
+    }
 
-            .schedule-item {
-                grid-template-columns: 1fr;
-                gap: 0.5rem;
-            }
+    /* ── BENTO GRID LAYOUT ── */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+    }
+    .bento-item {
+      grid-column: span 4;
+      min-height: 280px;
+    }
+    .bento-item-wide { grid-column: span 8; }
+    .bento-item-tall { grid-row: span 2; }
+    
+    @media (max-width: 1024px) {
+      .bento-item, .bento-item-wide { grid-column: span 6; }
+    }
+    @media (max-width: 640px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-item, .bento-item-wide { grid-column: span 1; }
+    }
 
-            .schedule-speaker {
-                text-align: left;
-            }
-        }
+    /* ── STAGGERED REVEAL ANIMATION ── */
+    .reveal-stagger {
+      opacity: 0;
+      transform: translateY(200px);
+      transition: opacity 400ms cubic-bezier(0.23, 1, 0.32, 1), transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .reveal-stagger.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-stagger:nth-child(1) { transition-delay: 0ms; }
+    .reveal-stagger:nth-child(2) { transition-delay: 100ms; }
+    .reveal-stagger:nth-child(3) { transition-delay: 200ms; }
+    .reveal-stagger:nth-child(4) { transition-delay: 300ms; }
+    .reveal-stagger:nth-child(5) { transition-delay: 400ms; }
+    .reveal-stagger:nth-child(6) { transition-delay: 500ms; }
+    .reveal-stagger:nth-child(7) { transition-delay: 600ms; }
+    .reveal-stagger:nth-child(8) { transition-delay: 700ms; }
 
-        @media (max-width: 576px) {
-            .section {
-                padding: 3rem 0;
-            }
+    /* ── GRAIN/NOISE OVERLAY ── */
+    .grain-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: 
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      animation: grain-shift 8s steps(10) infinite;
+      mix-blend-mode: overlay;
+    }
 
-            .hero {
-                padding: 8rem 0 3rem;
-            }
+    /* ── CUSTOM CURSOR ── */
+    .custom-cursor {
+      position: fixed;
+      top: 0; left: 0;
+      width: 24px; height: 24px;
+      border: 1.5px solid #d4a84b;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1), opacity 400ms cubic-bezier(0.23, 1, 0.32, 1);
+      opacity: 0.85;
+      mix-blend-mode: difference;
+    }
+    .custom-cursor.hovering {
+      transform: translate(-50%, -50%) scale(2.8);
+      opacity: 0.25;
+      filter: blur(4px);
+      border-width: 2px;
+    }
+    .clickable { cursor: none; }
 
-            .hero h1 {
-                font-size: 1.8rem;
-            }
+    /* ── BUTTON STYLES ── */
+    .btn-luxury {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: clamp(0.625rem, 0.8vw, 0.75rem);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid rgba(184, 146, 46, 0.4);
+      color: #d4a84b;
+      border-radius: 0.75rem;
+      transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .btn-luxury:hover {
+      background: rgba(184, 146, 46, 0.08);
+      border-color: #d4a84b;
+      transform: translateY(-2px);
+      box-shadow: 
+        0 2px 4px rgba(184,146,46,0.12),
+        0 8px 16px rgba(184,146,46,0.09),
+        0 16px 32px rgba(184,146,46,0.06),
+        0 32px 64px rgba(184,146,46,0.03),
+        0 64px 128px rgba(184,146,46,0.015);
+    }
+    .btn-luxury:active { transform: translateY(0); }
 
-            .hero-btns {
-                flex-direction: column;
-                align-items: center;
-            }
+    /* ── FUNNEL SECTION STYLES ── */
+    .funnel-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .funnel-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, #b8922e, transparent);
+      opacity: 0;
+      transition: opacity 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .funnel-card:hover::before { opacity: 1; }
 
-            .btn {
-                width: 100%;
-                max-width: 250px;
-            }
-        }
-    </style>
+    /* ── UTILITY CLASSES ── */
+    .text-gold { color: #d4a84b; }
+    .text-gold-light { color: #d4a84b; }
+    .border-subtle { border-color: rgba(217, 211, 199, 0.15); }
+    .bg-ink { background: #0e0f13; }
+    .bg-accent { background: #1a1c26; }
+    
+    /* Hide native cursor when custom cursor is active */
+    @media (pointer: fine) {
+      a, button, [role="button"], .clickable { cursor: none; }
+    }
+  </style>
 </head>
-<body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">DNA<span>Congress</span></a>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#topics">Topics</a></li>
-                    <li><a href="#speakers">Speakers</a></li>
-                    <li><a href="#schedule">Schedule</a></li>
-                    <li><a href="#registration">Registration</a></li>
-                    <li><a href="#venue">Venue</a></li>
-                    <li><a href="#resources">Resources</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
-        </div>
-    </header>
+<body class="dark">
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Dimensions of DNA: A Multidisciplinary Perspective</h1>
-                <p>Join leading scientists and practitioners to explore the multifaceted world of DNA research, from genomics to ethics and beyond.</p>
-                <div class="hero-btns">
-                    <a href="#registration" class="btn btn-primary">Register Now</a>
-                    <a href="#resources" class="btn btn-secondary">Download Materials</a>
-                    <button id="programBtn" class="btn btn-accent">View Program</button>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Grain Noise Overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+  
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor" aria-hidden="true"></div>
 
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <div class="container">
-            <h2 class="section-title">About the Congress</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Exploring DNA Across Disciplines</h2>
-                    <p>The "Dimensions of DNA: A Multidisciplinary Perspective" congress brings together scientists, researchers, clinicians, and practitioners from diverse fields to explore the multifaceted nature of DNA research and its implications across various domains.</p>
-                    <p>This international gathering aims to foster interdisciplinary dialogue, share cutting-edge research, and address the ethical, social, and practical dimensions of genetic science.</p>
-                    <p>Join us for an enriching experience featuring keynote presentations, panel discussions, workshops, and networking opportunities with leading experts in the field.</p>
-                </div>
-                <div class="about-image">
-                    <!-- Placeholder for DNA-themed image -->
-                    <div style="height: 300px; background: var(--gradient); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
-                        DNA Visualization
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Topics Section -->
-    <section id="topics" class="section topics">
-        <div class="container">
-            <h2 class="section-title">Topics of Interest</h2>
-            <div class="topics-grid">
-                <div class="card topic-card">
-                    <h3>Scientific & Technological Advances</h3>
-                    <ul>
-                        <li>DNA structure, function, and regulation</li>
-                        <li>Genomics, transcriptomics, and epigenetics</li>
-                        <li>CRISPR and genome editing technologies</li>
-                        <li>DNA sequencing and bioinformatics</li>
-                        <li>Synthetic biology and genetic engineering</li>
-                        <li>DNA-based computing and nanotechnology</li>
-                    </ul>
-                </div>
-                <div class="card topic-card">
-                    <h3>Health, Medicine & Personalized Care</h3>
-                    <ul>
-                        <li>DNA and the future of medicine</li>
-                        <li>Pharmacogenomics and individualized therapy</li>
-                        <li>Genetic screening and diagnostics</li>
-                        <li>Gene therapy and regenerative medicine</li>
-                        <li>Rare diseases and DNA mutations</li>
-                        <li>Ethical dilemmas in genetic enhancement</li>
-                    </ul>
-                </div>
-                <div class="card topic-card">
-                    <h3>Education & Public Understanding</h3>
-                    <ul>
-                        <li>Teaching DNA and genetics in schools</li>
-                        <li>Public engagement in genetic science</li>
-                        <li>Combating misinformation about genetics</li>
-                        <li>DNA and cultural narratives</li>
-                    </ul>
-                </div>
-                <div class="card topic-card">
-                    <h3>Forensics, History & Anthropology</h3>
-                    <ul>
-                        <li>DNA in forensic investigations</li>
-                        <li>Ancient DNA and human evolution</li>
-                        <li>Genetic genealogy and ancestry tracing</li>
-                        <li>DNA and cultural heritage</li>
-                    </ul>
-                </div>
-                <div class="card topic-card">
-                    <h3>Ancient DNA in Paleontological Contexts</h3>
-                    <ul>
-                        <li>Recovery of ancient DNA from geological sources</li>
-                        <li>Stratigraphy and dating of DNA layers</li>
-                        <li>Insights into extinct flora and fauna</li>
-                        <li>Human evolution and migration</li>
-                    </ul>
-                </div>
-                <div class="card topic-card">
-                    <h3>Environmental DNA & Geomonitoring</h3>
-                    <ul>
-                        <li>Monitoring biodiversity with eDNA</li>
-                        <li>Soil and sediment DNA as bioindicators</li>
-                        <li>Paleogenomics and Earth history</li>
-                        <li>Ethics in geo-genomic research</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Speakers Section -->
-    <section id="speakers" class="section speakers">
-        <div class="container">
-            <h2 class="section-title">Featured Speakers</h2>
-            <div class="speakers-grid">
-                <!-- Speaker 1 -->
-                <div class="card speaker-card">
-                    <div class="speaker-img" style="background: var(--gradient);"></div>
-                    <h3 class="speaker-name">Dr. Elena Rodriguez</h3>
-                    <p class="speaker-title">Professor of Genomics, Stanford University</p>
-                    <button class="btn btn-primary speaker-detail" data-speaker="1">View Profile</button>
-                </div>
-                <!-- Speaker 2 -->
-                <div class="card speaker-card">
-                    <div class="speaker-img" style="background: var(--gradient);"></div>
-                    <h3 class="speaker-name">Dr. James Chen</h3>
-                    <p class="speaker-title">Director, Institute for Genetic Medicine</p>
-                    <button class="btn btn-primary speaker-detail" data-speaker="2">View Profile</button>
-                </div>
-                <!-- Speaker 3 -->
-                <div class="card speaker-card">
-                    <div class="speaker-img" style="background: var(--gradient);"></div>
-                    <h3 class="speaker-name">Dr. Sarah Johnson</h3>
-                    <p class="speaker-title">Head of Bioinformatics, European Molecular Biology Laboratory</p>
-                    <button class="btn btn-primary speaker-detail" data-speaker="3">View Profile</button>
-                </div>
-                <!-- Speaker 4 -->
-                <div class="card speaker-card">
-                    <div class="speaker-img" style="background: var(--gradient);"></div>
-                    <h3 class="speaker-name">Dr. Michael Brown</h3>
-                    <p class="speaker-title">Chief Scientific Officer, GeneTech Solutions</p>
-                    <button class="btn btn-primary speaker-detail" data-speaker="4">View Profile</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Schedule Section -->
-    <section id="schedule" class="section schedule">
-        <div class="container">
-            <h2 class="section-title">Congress Schedule</h2>
-            <div class="schedule-tabs">
-                <button class="schedule-tab active" data-day="day1">Day 1</button>
-                <button class="schedule-tab" data-day="day2">Day 2</button>
-                <button class="schedule-tab" data-day="day3">Day 3</button>
-            </div>
-            <div class="schedule-content active" id="day1">
-                <div class="card">
-                    <div class="schedule-item">
-                        <div class="schedule-time">09:00 - 10:00</div>
-                        <div class="schedule-title">Opening Ceremony & Keynote Address</div>
-                        <div class="schedule-speaker">Dr. Elena Rodriguez</div>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="schedule-time">10:00 - 11:30</div>
-                        <div class="schedule-title">Advances in Genomic Sequencing Technologies</div>
-                        <div class="schedule-speaker">Panel Discussion</div>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="schedule-time">11:30 - 12:30</div>
-                        <div class="schedule-title">Poster Session 1: Scientific & Technological Advances</div>
-                        <div class="schedule-speaker">Various Presenters</div>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="schedule-time">14:00 - 15:30</div>
-                        <div class="schedule-title">CRISPR and Genome Editing: Current Applications</div>
-                        <div class="schedule-speaker">Dr. James Chen</div>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="schedule-time">16:00 - 17:30</div>
-                        <div class="schedule-title">Workshop: Bioinformatics Tools for DNA Analysis</div>
-                        <div class="schedule-speaker">Dr. Sarah Johnson</div>
-                    </div>
-                </div>
-            </div>
-            <div class="schedule-content" id="day2">
-                <div class="card">
-                    <div class="schedule-item">
-                        <div class="schedule-time">09:00 - 10:30</div>
-                        <div class="schedule-title">Personalized Medicine and Pharmacogenomics</div>
-                        <div class="schedule-speaker">Dr. Michael Brown</div>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="schedule-time">11:00 - 12:30</div>
-                        <div class="schedule-title">Ancient DNA and Human Evolution</div>
-                        <div class="schedule-speaker">Dr. Anna Schmidt</div>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="schedule-time">14:00 - 15:30</div>
-                        <div class="schedule-title">Environmental DNA Monitoring</div>
-                        <div class="schedule-speaker">Dr. Robert Williams</div>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="schedule-time">16:00 - 17:30</div>
-                        <div class="schedule-title">Ethical Considerations in Genetic Research</div>
-                        <div class="schedule-speaker">Panel Discussion</div>
-                    </div>
-                </div>
-            </div>
-            <div class="schedule-content" id="day3">
-                <div class="card">
-                    <div class="schedule-item">
-                        <div class="schedule-time">09:00 - 10:30</div>
-                        <div class="schedule-title">DNA in Forensic Science</div>
-                        <div class="schedule-speaker">Dr. Lisa Thompson</div>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="schedule-time">11:00 - 12:30</div>
-                        <div class="schedule-title">Public Understanding of Genetics</div>
-                        <div class="schedule-speaker">Dr. David Wilson</div>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="schedule-time">14:00 - 15:30</div>
-                        <div class="schedule-title">Future Directions in DNA Research</div>
-                        <div class="schedule-speaker">Roundtable Discussion</div>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="schedule-time">16:00 - 17:00</div>
-                        <div class="schedule-title">Closing Ceremony & Awards</div>
-                        <div class="schedule-speaker">Congress Chairs</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Registration Section -->
-    <section id="registration" class="section registration">
-        <div class="container">
-            <h2 class="section-title">Registration</h2>
-            <div class="registration-cards">
-                <div class="card registration-card">
-                    <h3>Student</h3>
-                    <div class="price">$150 <span>/ person</span></div>
-                    <ul class="features">
-                        <li>Access to all sessions</li>
-                        <li>Conference materials</li>
-                        <li>Lunch and refreshments</li>
-                        <li>Certificate of attendance</li>
-                    </ul>
-                    <button class="btn btn-primary">Register Now</button>
-                </div>
-                <div class="card registration-card featured">
-                    <h3>Academic</h3>
-                    <div class="price">$300 <span>/ person</span></div>
-                    <ul class="features">
-                        <li>Access to all sessions</li>
-                        <li>Conference materials</li>
-                        <li>Lunch and refreshments</li>
-                        <li>Certificate of attendance</li>
-                        <li>Networking dinner</li>
-                        <li>Abstract submission</li>
-                    </ul>
-                    <button class="btn btn-accent">Register Now</button>
-                </div>
-                <div class="card registration-card">
-                    <h3>Industry</h3>
-                    <div class="price">$500 <span>/ person</span></div>
-                    <ul class="features">
-                        <li>Access to all sessions</li>
-                        <li>Conference materials</li>
-                        <li>Lunch and refreshments</li>
-                        <li>Certificate of attendance</li>
-                        <li>Networking dinner</li>
-                        <li>Exhibition area access</li>
-                    </ul>
-                    <button class="btn btn-primary">Register Now</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Venue Section -->
-    <section id="venue" class="section venue">
-        <div class="container">
-            <h2 class="section-title">Venue & Travel</h2>
-            <div class="venue-content">
-                <div class="venue-info">
-                    <h3>International Conference Center</h3>
-                    <p>123 Science Avenue, Innovation District</p>
-                    <p>Metropolis, MC 12345</p>
-                    <p>United States</p>
-                    <br>
-                    <h4>Travel Information</h4>
-                    <p>The venue is easily accessible by public transportation, with multiple bus and subway lines serving the area. The nearest airport is Metropolis International (MIA), located 20 minutes away by taxi or shuttle.</p>
-                    <p>Accommodation options are available within walking distance of the conference center, with special rates for congress attendees.</p>
-                    <br>
-                    <button class="btn btn-primary">Download Travel Guide</button>
-                </div>
-                <div class="venue-map">
-                    <!-- Placeholder for map -->
-                    <div style="height: 100%; background: var(--light); display: flex; align-items: center; justify-content: center; color: var(--text-light);">
-                        Interactive Map
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Scientific Board Section -->
-    <section class="section scientific-board">
-        <div class="container">
-            <h2 class="section-title">Scientific Board</h2>
-            <div class="board-grid">
-                <!-- Board Member 1 -->
-                <div class="card board-member">
-                    <div class="board-img" style="background: var(--gradient);"></div>
-                    <h3>Dr. Maria Gonzalez</h3>
-                    <p>Chair, Genetics Department</p>
-                    <p>University of Cambridge</p>
-                </div>
-                <!-- Board Member 2 -->
-                <div class="card board-member">
-                    <div class="board-img" style="background: var(--gradient);"></div>
-                    <h3>Dr. Thomas Weber</h3>
-                    <p>Director, Molecular Biology Institute</p>
-                    <p>Max Planck Society</p>
-                </div>
-                <!-- Board Member 3 -->
-                <div class="card board-member">
-                    <div class="board-img" style="background: var(--gradient);"></div>
-                    <h3>Dr. Jennifer Park</h3>
-                    <p>Head of Research</p>
-                    <p>National Institutes of Health</p>
-                </div>
-                <!-- Board Member 4 -->
-                <div class="card board-member">
-                    <div class="board-img" style="background: var(--gradient);"></div>
-                    <h3>Dr. Ahmed Hassan</h3>
-                    <p>Professor of Bioinformatics</p>
-                    <p>University of Tokyo</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resources Section -->
-    <section id="resources" class="section resources">
-        <div class="container">
-            <h2 class="section-title">Congress Resources</h2>
-            <div class="resources-grid">
-                <div class="card resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <h3>Event Report</h3>
-                    <p>Download the comprehensive event report summarizing key findings and discussions.</p>
-                    <button class="btn btn-primary">Download PDF</button>
-                </div>
-                <div class="card resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h3>Abstract Book</h3>
-                    <p>Access the complete collection of abstracts presented at the congress.</p>
-                    <button class="btn btn-primary">Download PDF</button>
-                </div>
-                <div class="card resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-scroll"></i>
-                    </div>
-                    <h3>Proceedings</h3>
-                    <p>Review the full proceedings including extended abstracts and research papers.</p>
-                    <button class="btn btn-primary">Download PDF</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Repositories Section -->
-    <section class="section repositories">
-        <div class="container">
-            <h2 class="section-title">Research Repositories</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">All scientific presentations from this congress will be archived in the following international repositories:</p>
-            <div class="repo-grid">
-                <div class="card repo-card">
-                    <div class="repo-logo">
-                        <!-- Placeholder for WHO logo -->
-                        <div style="width: 100%; height: 100%; background: var(--light); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">WHO Repository</div>
-                    </div>
-                    <h3>WHO Repository Database</h3>
-                    <button class="btn btn-secondary">Access Repository</button>
-                </div>
-                <div class="card repo-card">
-                    <div class="repo-logo">
-                        <!-- Placeholder for JRC logo -->
-                        <div style="width: 100%; height: 100%; background: var(--light); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">JRC</div>
-                    </div>
-                    <h3>JRC Publications Repository</h3>
-                    <button class="btn btn-secondary">Access Repository</button>
-                </div>
-                <div class="card repo-card">
-                    <div class="repo-logo">
-                        <!-- Placeholder for EU logo -->
-                        <div style="width: 100%; height: 100%; background: var(--light); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">EU Open Research</div>
-                    </div>
-                    <h3>EU Open Research Repository</h3>
-                    <button class="btn btn-secondary">Access Repository</button>
-                </div>
-                <div class="card repo-card">
-                    <div class="repo-logo">
-                        <!-- Placeholder for DANS logo -->
-                        <div style="width: 100%; height: 100%; background: var(--light); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">DANS</div>
-                    </div>
-                    <h3>DANS Repository</h3>
-                    <button class="btn btn-secondary">Access Repository</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sponsors Section -->
-    <section class="section sponsors">
-        <div class="container">
-            <h2 class="section-title">Our Sponsors</h2>
-            <div class="sponsor-tiers">
-                <div class="sponsor-tier">
-                    <h3 class="tier-title">Platinum Sponsors</h3>
-                    <div class="sponsor-logos">
-                        <div class="sponsor-logo">
-                            <!-- Placeholder for sponsor logo -->
-                            <div style="width: 180px; height: 100%; background: var(--light); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">GeneTech Solutions</div>
-                        </div>
-                        <div class="sponsor-logo">
-                            <!-- Placeholder for sponsor logo -->
-                            <div style="width: 180px; height: 100%; background: var(--light); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">BioSequence Inc.</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sponsor-tier">
-                    <h3 class="tier-title">Gold Sponsors</h3>
-                    <div class="sponsor-logos">
-                        <div class="sponsor-logo">
-                            <!-- Placeholder for sponsor logo -->
-                            <div style="width: 150px; height: 100%; background: var(--light); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">Molecular Dynamics</div>
-                        </div>
-                        <div class="sponsor-logo">
-                            <!-- Placeholder for sponsor logo -->
-                            <div style="width: 150px; height: 100%; background: var(--light); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">Genome Research Foundation</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sponsor-tier">
-                    <h3 class="tier-title">Silver Sponsors</h3>
-                    <div class="sponsor-logos">
-                        <div class="sponsor-logo">
-                            <!-- Placeholder for sponsor logo -->
-                            <div style="width: 120px; height: 100%; background: var(--light); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">DNA Analytics</div>
-                        </div>
-                        <div class="sponsor-logo">
-                            <!-- Placeholder for sponsor logo -->
-                            <div style="width: 120px; height: 100%; background: var(--light); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">BioInformatics Corp</div>
-                        </div>
-                        <div class="sponsor-logo">
-                            <!-- Placeholder for sponsor logo -->
-                            <div style="width: 120px; height: 100%; background: var(--light); display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary);">Genetic Solutions Ltd</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <h2 class="section-title">Contact Us</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Get In Touch</h3>
-                    <p>Have questions about the congress? Reach out to our organizing committee.</p>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h4>Address</h4>
-                            <p>123 Science Avenue, Innovation District<br>Metropolis, MC 12345</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>info@dnacongress.org</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>+1 (555) 123-4567</p>
-                        </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" class="form-control" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>DNA Congress</h3>
-                    <p>Exploring the multifaceted dimensions of DNA through interdisciplinary research and collaboration.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#speakers">Speakers</a></li>
-                        <li><a href="#schedule">Schedule</a></li>
-                        <li><a href="#registration">Registration</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#resources">Event Report</a></li>
-                        <li><a href="#resources">Abstract Book</a></li>
-                        <li><a href="#resources">Proceedings</a></li>
-                        <li><a href="#venue">Travel Guide</a></li>
-                        <li><a href="#">Code of Conduct</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Legal</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">Accessibility</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Dimensions of DNA Congress. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Program Modal -->
-    <div class="modal" id="programModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Congress Program</h2>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body">
-                <h3>Topics of Interest</h3>
-                <p>The congress program covers the following multidisciplinary topics:</p>
-                <ul>
-                    <li><strong>Scientific and Technological Advances</strong>: DNA structure, genomics, CRISPR, sequencing, bioinformatics, synthetic biology, DNA computing</li>
-                    <li><strong>Health, Medicine, and Personalized Care</strong>: Future of medicine, pharmacogenomics, diagnostics, gene therapy, rare diseases, ethics</li>
-                    <li><strong>Education and Public Understanding</strong>: Teaching genetics, public engagement, combating misinformation, cultural narratives</li>
-                    <li><strong>Forensics, History, and Anthropology</strong>: Forensic DNA, ancient DNA, human evolution, genealogy, cultural heritage</li>
-                    <li><strong>Ancient DNA in Paleontological Contexts</strong>: aDNA recovery, stratigraphy, extinct species, human migration</li>
-                    <li><strong>Environmental DNA and Geomonitoring</strong>: Biodiversity monitoring, ecosystem change indicators</li>
-                    <li><strong>Paleogenomics and Earth History</strong>: Evolutionary reconstruction, correlation with geological events</li>
-                    <li><strong>Ethics and Access in Geo-Genomic Research</strong>: Sampling ethics, ownership of genetic resources</li>
-                </ul>
-                <p>For the detailed schedule, please visit the <a href="#schedule">Schedule section</a>.</p>
-            </div>
-        </div>
+  <!-- TOPBAR -->
+  <header class="sticky top-0 z-50 bg-ink/95 backdrop-blur-sm border-b border-subtle transition-premium">
+    <div class="max-w-7xl mx-auto px-8n py-4n flex items-center justify-between">
+      <div class="font-serif font-light text-fluid-xs tracking-widest uppercase text-gold">
+        Dr. Adanela Musaraj
+      </div>
+      <nav class="hidden md:flex items-center gap-8n">
+        <a href="#profile" class="font-mono text-fluid-xs tracking-wide uppercase text-mid hover:text-gold-light transition-premium clickable">Profile</a>
+        <a href="#services" class="font-mono text-fluid-xs tracking-wide uppercase text-mid hover:text-gold-light transition-premium clickable">Services</a>
+        <a href="#funnel" class="font-mono text-fluid-xs tracking-wide uppercase text-mid hover:text-gold-light transition-premium clickable">For Institutions</a>
+        <a href="#contact" class="font-mono text-fluid-xs tracking-wide uppercase text-mid hover:text-gold-light transition-premium clickable">Contact</a>
+      </nav>
+      <button class="md:hidden text-gold clickable" aria-label="Menu">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
     </div>
+  </header>
 
-    <!-- Speaker Detail Modal -->
-    <div class="modal" id="speakerModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="speakerModalTitle">Speaker Details</h2>
-                <button class="modal-close">&times;</button>
-            </div>
-            <div class="modal-body" id="speakerModalBody">
-                <!-- Content will be populated by JavaScript -->
-            </div>
+  <!-- HERO SECTION -->
+  <section id="profile" class="relative py-24n px-8n">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8n">
+      
+      <!-- Label Column -->
+      <div class="lg:col-span-1 hidden lg:flex items-end pb-8n">
+        <span class="font-mono text-fluid-xs tracking-widest uppercase text-gold rotate-180 writing-mode-vertical-rl" style="writing-mode: vertical-rl; transform: rotate(180deg);">
+          Profile — Knowledge Arbitrage
+        </span>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="lg:col-span-8">
+        <div class="font-mono text-fluid-xs tracking-widest uppercase text-gold mb-6n">
+          Scientific · Policy · Finance Interface
         </div>
+        <h1 class="text-fluid-h1 mb-4n">
+          Dr. Adanela<br><em class="text-gold-light italic">Musaraj</em>
+        </h1>
+        <h2 class="font-serif font-normal text-fluid-h3 text-paper/70 mb-8n">
+          High-Stakes Knowledge Arbitrage Advisor<br/>
+          Health · Biotechnology · Education · Agri-Food Systems
+        </h2>
+        <p class="text-fluid-body text-paper/80 max-w-3xl border-l-2 border-gold pl-6n leading-relaxed">
+          Operating at the precise intersection of molecular science, regulatory frameworks, and institutional finance — converting deep domain expertise into actionable intelligence for Banks, UN agencies, EU bodies, International NGOs, and Education Industry stakeholders. Translating what is scientifically true into what is institutionally legible and financially actionable.
+        </p>
+      </div>
+      
+      <!-- Aside -->
+      <div class="lg:col-span-3 glass-card p-8n flex flex-col justify-between">
+        <div>
+          <div class="font-mono text-fluid-xs tracking-widest uppercase text-gold mb-4n">Core Domains</div>
+          <ul class="space-y-3n text-fluid-sm text-paper/70">
+            <li class="border-b border-white/5 pb-2n">Health Industry Knowledge Systems</li>
+            <li class="border-b border-white/5 pb-2n">Food Security &amp; Agri-Food Intelligence</li>
+            <li class="border-b border-white/5 pb-2n">Environment &amp; Climate Data Systems</li>
+            <li class="border-b border-white/5 pb-2n">Education Policy &amp; Digital Transformation</li>
+            <li class="border-b border-white/5 pb-2n">Biotechnology R&amp;D Advisory</li>
+            <li>Scientific Due Diligence for Finance</li>
+          </ul>
+        </div>
+        <div class="mt-8n">
+          <div class="font-mono text-fluid-xs tracking-widest uppercase text-gold mb-3n">Direct Contact</div>
+          <a href="mailto:adanela.musaraj@yahoo.fr" class="font-mono text-fluid-sm text-gold-light hover:text-gold transition-premium clickable block break-all">
+            adanela.musaraj@yahoo.fr
+          </a>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <script>
-        // DOM Elements
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        const scheduleTabs = document.querySelectorAll('.schedule-tab');
-        const scheduleContents = document.querySelectorAll('.schedule-content');
-        const programBtn = document.getElementById('programBtn');
-        const programModal = document.getElementById('programModal');
-        const speakerDetailBtns = document.querySelectorAll('.speaker-detail');
-        const speakerModal = document.getElementById('speakerModal');
-        const speakerModalTitle = document.getElementById('speakerModalTitle');
-        const speakerModalBody = document.getElementById('speakerModalBody');
-        const modalCloses = document.querySelectorAll('.modal-close');
-        const contactForm = document.getElementById('contactForm');
+  <!-- STATS STRIP -->
+  <section class="px-8n pb-16n">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4n">
+      <div class="glass-card p-8n text-center">
+        <div class="font-serif text-4xl font-light text-gold mb-2n">8</div>
+        <div class="font-mono text-fluid-xs uppercase text-paper/60">Structured Portfolios</div>
+      </div>
+      <div class="glass-card p-8n text-center">
+        <div class="font-serif text-4xl font-light text-paper mb-2n">4</div>
+        <div class="font-mono text-fluid-xs uppercase text-paper/60">Industry Sectors</div>
+      </div>
+      <div class="glass-card p-8n text-center">
+        <div class="font-serif text-2xl font-light text-gold mb-2n">UN · EU · Banks</div>
+        <div class="font-mono text-fluid-xs uppercase text-paper/60">Institutional Clients</div>
+      </div>
+      <div class="glass-card p-8n text-center">
+        <div class="font-serif text-2xl font-light text-paper mb-2n">NACE M·P·E·K</div>
+        <div class="font-mono text-fluid-xs uppercase text-paper/60">Classification Codes</div>
+      </div>
+    </div>
+  </section>
 
-        // Toggle mobile navigation
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+  <!-- BENTO GRID: SERVICES HUB -->
+  <section id="services" class="px-8n py-16n">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Header -->
+      <div class="mb-16n">
+        <div class="font-mono text-fluid-xs tracking-widest uppercase text-gold mb-4n">01 — 08</div>
+        <h2 class="text-fluid-h2 mb-4n">Knowledge Arbitrage Service Portfolios</h2>
+        <p class="text-fluid-body text-paper/70 max-w-2xl">
+          Each portfolio is NACE-coded, procurement-compatible, and institutionally legible — designed for Banks, UN agencies, EU bodies, and International NGOs requiring high-fidelity evaluation and advisory services.
+        </p>
+      </div>
 
-        // Close mobile navigation when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
+      <!-- Bento Grid -->
+      <div class="bento-grid">
+        
+        <!-- Card 1: Strategic Science & Policy -->
+        <article class="bento-item glass-card p-8n reveal-stagger clickable">
+          <div class="flex items-center gap-3n mb-6n">
+            <i data-lucide="scale" class="w-5 h-5 text-gold"></i>
+            <h3 class="text-fluid-h3">Strategic Science &amp; Policy Advisory</h3>
+          </div>
+          <p class="text-fluid-sm text-paper/75 mb-6n">
+            Converting molecular biology, pharmaceutical insights, and regulatory science into institutional decision frameworks for EU and UN audiences.
+          </p>
+          <ul class="space-y-2n text-fluid-sm text-paper/65 mb-6n">
+            <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> Science-to-Policy Translation</li>
+            <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> Regulatory Intelligence &amp; Foresight</li>
+            <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> Evidence-Based Investment Risk Analysis</li>
+          </ul>
+          <button class="btn-luxury clickable">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <span>Explore</span>
+          </button>
+          <div class="mt-6n font-mono text-fluid-xs text-paper/40">NACE M70.22 · M72.19 · M74.90</div>
+        </article>
 
-        // Schedule tab functionality
-        scheduleTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs and contents
-                scheduleTabs.forEach(t => t.classList.remove('active'));
-                scheduleContents.forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked tab and corresponding content
-                tab.classList.add('active');
-                const day = tab.getAttribute('data-day');
-                document.getElementById(day).classList.add('active');
-            });
-        });
+        <!-- Card 2: Health Programme Design -->
+        <article class="bento-item glass-card p-8n reveal-stagger clickable">
+          <div class="flex items-center gap-3n mb-6n">
+            <i data-lucide="heart-pulse" class="w-5 h-5 text-gold"></i>
+            <h3 class="text-fluid-h3">Health &amp; Pharma Programme Design</h3>
+          </div>
+          <p class="text-fluid-sm text-paper/75 mb-6n">
+            Bridging international health guidelines with real-world programme execution at national levels — including pharmaceutical supply chains.
+          </p>
+          <ul class="space-y-2n text-fluid-sm text-paper/65 mb-6n">
+            <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> National Health Programme Architecture</li>
+            <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> Pharmaceutical Supply Chain Strategy</li>
+            <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> Clinical Research Ecosystem Development</li>
+          </ul>
+          <button class="btn-luxury clickable">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <span>Explore</span>
+          </button>
+          <div class="mt-6n font-mono text-fluid-xs text-paper/40">NACE M70.22 · Q86.90 · M72.11</div>
+        </article>
 
-        // Program modal functionality
-        programBtn.addEventListener('click', () => {
-            programModal.classList.add('active');
-        });
+        <!-- Card 3: Evaluation & Impact (Wide) -->
+        <article class="bento-item-wide glass-card p-8n reveal-stagger clickable">
+          <div class="flex items-center gap-3n mb-6n">
+            <i data-lucide="target" class="w-5 h-5 text-gold"></i>
+            <h3 class="text-fluid-h3">High-Level Evaluation &amp; Impact Assessment</h3>
+          </div>
+          <div class="grid md:grid-cols-2 gap-8n">
+            <div>
+              <h4 class="mb-4n">Programme Evaluation</h4>
+              <ul class="space-y-2n text-fluid-sm text-paper/65">
+                <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> Erasmus+ &amp; Horizon Europe Assessment</li>
+                <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> UN-Funded Health Programme Review</li>
+                <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> Education Programme Impact Validation</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="mb-4n">Impact Metrics &amp; Validation</h4>
+              <ul class="space-y-2n text-fluid-sm text-paper/65">
+                <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> SDG Outcome Indicator Design</li>
+                <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> ESG Frameworks for Health Investments</li>
+                <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> Scientific Validation for Institutional Funders</li>
+              </ul>
+            </div>
+          </div>
+          <button class="btn-luxury mt-8n clickable">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <span>View Methodology</span>
+          </button>
+          <div class="mt-6n font-mono text-fluid-xs text-paper/40">NACE M70.22 · M72.20 · Keywords: evaluator, assessor, World Bank, IMF</div>
+        </article>
 
-        // Speaker detail modal functionality
-        const speakerData = {
-            1: {
-                name: "Dr. Elena Rodriguez",
-                title: "Professor of Genomics, Stanford University",
-                bio: "Dr. Rodriguez is a leading expert in genomic sequencing technologies and their applications in personalized medicine. Her research focuses on developing novel approaches for analyzing large-scale genomic data to identify disease biomarkers and therapeutic targets.",
-                sessions: ["Opening Ceremony & Keynote Address", "Advances in Genomic Sequencing Technologies"]
-            },
-            2: {
-                name: "Dr. James Chen",
-                title: "Director, Institute for Genetic Medicine",
-                bio: "Dr. Chen is renowned for his work in CRISPR technology and its ethical implications. He has published over 100 papers on genome editing and leads several international consortia focused on responsible innovation in genetic technologies.",
-                sessions: ["CRISPR and Genome Editing: Current Applications", "Ethical Considerations in Genetic Research"]
-            },
-            3: {
-                name: "Dr. Sarah Johnson",
-                title: "Head of Bioinformatics, European Molecular Biology Laboratory",
-                bio: "Dr. Johnson specializes in developing computational tools for DNA analysis and interpretation. Her work has been instrumental in advancing our understanding of epigenetic modifications and their role in gene regulation.",
-                sessions: ["Workshop: Bioinformatics Tools for DNA Analysis", "Future Directions in DNA Research"]
-            },
-            4: {
-                name: "Dr. Michael Brown",
-                title: "Chief Scientific Officer, GeneTech Solutions",
-                bio: "Dr. Brown is a pioneer in the field of pharmacogenomics and personalized medicine. Under his leadership, GeneTech Solutions has developed several FDA-approved genetic tests that guide treatment decisions for various conditions.",
-                sessions: ["Personalized Medicine and Pharmacogenomics", "Panel Discussion: Future of Genetic Testing"]
-            }
-        };
+        <!-- Card 4: Scientific Due Diligence -->
+        <article class="bento-item glass-card p-8n reveal-stagger clickable">
+          <div class="flex items-center gap-3n mb-6n">
+            <i data-lucide="shield-check" class="w-5 h-5 text-gold"></i>
+            <h3 class="text-fluid-h3">Scientific Due Diligence</h3>
+          </div>
+          <p class="text-fluid-sm text-paper/75 mb-6n">
+            Biotech complexity decoded for financial decision-making. Lab science interpreted as investment-grade risk frameworks.
+          </p>
+          <ul class="space-y-2n text-fluid-sm text-paper/65 mb-6n">
+            <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> Startup Seed/Series A Assessment</li>
+            <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> Pharma Pipeline Risk Analysis</li>
+            <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> Healthtech Regulatory Pathway Review</li>
+          </ul>
+          <button class="btn-luxury clickable">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <span>Explore</span>
+          </button>
+          <div class="mt-6n font-mono text-fluid-xs text-paper/40">NACE K64.99 · M70.22 · TRL3-7 Assessments</div>
+        </article>
 
-        speakerDetailBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const speakerId = btn.getAttribute('data-speaker');
-                const speaker = speakerData[speakerId];
-                
-                speakerModalTitle.textContent = speaker.name;
-                speakerModalBody.innerHTML = `
-                    <div style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem;">
-                        <div style="width: 120px; height: 120px; border-radius: 50%; background: var(--gradient);"></div>
-                        <div>
-                            <h3>${speaker.name}</h3>
-                            <p style="color: var(--text-light); margin-bottom: 1rem;">${speaker.title}</p>
-                        </div>
-                    </div>
-                    <div>
-                        <h4>Biography</h4>
-                        <p>${speaker.bio}</p>
-                    </div>
-                    <div style="margin-top: 1.5rem;">
-                        <h4>Sessions</h4>
-                        <ul>
-                            ${speaker.sessions.map(session => `<li>${session}</li>`).join('')}
-                        </ul>
-                    </div>
-                `;
-                
-                speakerModal.classList.add('active');
-            });
-        });
+        <!-- Card 5: IP & TRL Evaluation -->
+        <article class="bento-item glass-card p-8n reveal-stagger clickable">
+          <div class="flex items-center gap-3n mb-6n">
+            <i data-lucide="file-badge" class="w-5 h-5 text-gold"></i>
+            <h3 class="text-fluid-h3">IP Evaluation &amp; TRL3-7 Assessments</h3>
+          </div>
+          <p class="text-fluid-sm text-paper/75 mb-6n">
+            Technology Readiness Level assessments for high-stakes institutional procurement. IP valuation aligned with EU compliance frameworks.
+          </p>
+          <ul class="space-y-2n text-fluid-sm text-paper/65 mb-6n">
+            <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> TRL3-7 Validation Frameworks</li>
+            <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> IP Portfolio Risk Assessment</li>
+            <li class="flex items-start gap-2n"><span class="text-gold mt-1">•</span> Interreg &amp; EU Funding Alignment</li>
+          </ul>
+          <button class="btn-luxury clickable">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <span>Explore</span>
+          </button>
+          <div class="mt-6n font-mono text-fluid-xs text-paper/40">Keywords: IP evaluation, TRL3-7, Interreg, EU compliance</div>
+        </article>
 
-        // Close modals
-        modalCloses.forEach(close => {
-            close.addEventListener('click', () => {
-                programModal.classList.remove('active');
-                speakerModal.classList.remove('active');
-            });
-        });
+        <!-- Card 6: Institutional Funnel (Wide) -->
+        <article class="bento-item-wide glass-card p-8n reveal-stagger funnel-card clickable" id="funnel">
+          <div class="flex items-center gap-3n mb-6n">
+            <i data-lucide="users" class="w-5 h-5 text-gold"></i>
+            <h3 class="text-fluid-h3">For Institutional Decision-Makers</h3>
+          </div>
+          <div class="grid md:grid-cols-3 gap-6n">
+            <div class="p-6n rounded-2xl bg-accent/50 border border-subtle">
+              <div class="font-mono text-fluid-xs uppercase text-gold mb-3n">Researchers</div>
+              <p class="text-fluid-sm text-paper/70 mb-4n">
+                ORCID, DOI, and ISSN integration for academic publications. Conference proceedings with ISBN indexing. Fully remote collaboration.
+              </p>
+              <a href="#contact" class="font-mono text-fluid-xs text-gold-light hover:text-gold transition-premium clickable inline-flex items-center gap-2n">
+                <span>Connect</span>
+                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+            <div class="p-6n rounded-2xl bg-accent/50 border border-subtle">
+              <div class="font-mono text-fluid-xs uppercase text-gold mb-3n">Universities</div>
+              <p class="text-fluid-sm text-paper/70 mb-4n">
+                Program evaluation, project assessment, and TRL validation for research commercialization. ROR institutional identifier mapping.
+              </p>
+              <a href="#contact" class="font-mono text-fluid-xs text-gold-light hover:text-gold transition-premium clickable inline-flex items-center gap-2n">
+                <span>Engage</span>
+                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+            <div class="p-6n rounded-2xl bg-accent/50 border border-subtle">
+              <div class="font-mono text-fluid-xs uppercase text-gold mb-3n">Procurement Offices</div>
+              <p class="text-fluid-sm text-paper/70 mb-4n">
+                NACE-coded services (Q86/K65) for World Bank, IMF, Interreg tenders. Evaluation frameworks compliant with EU procurement standards.
+              </p>
+              <a href="#contact" class="font-mono text-fluid-xs text-gold-light hover:text-gold transition-premium clickable inline-flex items-center gap-2n">
+                <span>Request Brief</span>
+                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+          <div class="mt-8n pt-6n border-t border-subtle">
+            <p class="text-fluid-sm text-paper/60">
+              <span class="text-gold">Keywords for indexing:</span> evaluator, assessor, interreg, World Bank, IMF, program evaluation, project evaluation, startup evaluation, IP evaluation, TRL3-7 assessments, fully remote, ISBN, ISSN, ORCID, DOI, ROR
+            </p>
+          </div>
+        </article>
 
-        // Close modals when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === programModal) {
-                programModal.classList.remove('active');
-            }
-            if (e.target === speakerModal) {
-                speakerModal.classList.remove('active');
-            }
-        });
+        <!-- Card 7: Capacity Building -->
+        <article class="bento-item glass-card p-8n reveal-stagger clickable">
+          <div class="flex items-center gap-3n mb-6n">
+            <i data-lucide="graduation-cap" class="w-5 h-5 text-gold"></i>
+            <h3 class="text-fluid-h3">Executive Training</h3>
+          </div>
+          <p class="text-fluid-sm text-paper/75 mb-6n">
+            Elite expertise converted into institutional capability. Targeted scientific and regulatory fluency for decision-makers.
+          </p>
+          <button class="btn-luxury clickable">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <span>View Topics</span>
+          </button>
+          <div class="mt-6n font-mono text-fluid-xs text-paper/40">NACE P85.59 · M70.22</div>
+        </article>
 
-        // Form validation
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Simple validation
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            if (name && email && subject && message) {
-                alert('Thank you for your message! We will get back to you soon.');
-                contactForm.reset();
-            } else {
-                alert('Please fill in all fields.');
-            }
-        });
+        <!-- Card 8: Innovation Ecosystem -->
+        <article class="bento-item glass-card p-8n reveal-stagger clickable">
+          <div class="flex items-center gap-3n mb-6n">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-gold"></i>
+            <h3 class="text-fluid-h3">Innovation Ecosystem Advisory</h3>
+          </div>
+          <p class="text-fluid-sm text-paper/75 mb-6n">
+            University spin-off strategy, biotech incubator design, and public-private partnership structuring for research commercialization.
+          </p>
+          <button class="btn-luxury clickable">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <span>Explore</span>
+          </button>
+          <div class="mt-6n font-mono text-fluid-xs text-paper/40">NACE M70.22 · M72.11 · J62.01</div>
+        </article>
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const offsetTop = targetElement.offsetTop - 80; // Adjust for fixed header
-                    
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+      </div>
+    </div>
+  </section>
 
-        // Highlight active section in navigation
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
+  <!-- CONTACT / CTA SECTION -->
+  <section id="contact" class="px-8n py-24n bg-accent/30">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="font-mono text-fluid-xs tracking-widest uppercase text-gold mb-6n">Engage Dr. Musaraj</div>
+      <h2 class="text-fluid-h2 mb-8n">High-Stakes Knowledge Arbitrage Services</h2>
+      <p class="text-fluid-body text-paper/70 mb-12n max-w-2xl mx-auto">
+        Available for institutional mandates, programme advisory, due diligence commissions, evaluation contracts, and executive training engagements. All services structured for UN, EU, and banking procurement frameworks.
+      </p>
+      
+      <div class="glass-card p-12n mb-12n">
+        <div class="grid md:grid-cols-2 gap-8n text-left">
+          <div>
+            <div class="font-mono text-fluid-xs uppercase text-gold mb-4n">Contact</div>
+            <a href="mailto:adanela.musaraj@yahoo.fr" class="text-fluid-body text-gold-light hover:text-gold transition-premium clickable block mb-4n">
+              adanela.musaraj@yahoo.fr
+            </a>
+            <div class="text-fluid-sm text-paper/60">
+              <span class="block font-mono text-fluid-xs uppercase mb-2n">Institutional Scope</span>
+              Banks · UN Agencies · EU Agencies<br/>International NGOs · Education Sector
+            </div>
+          </div>
+          <div>
+            <div class="font-mono text-fluid-xs uppercase text-gold mb-4n">Mandate Types</div>
+            <ul class="space-y-2n text-fluid-sm text-paper/70">
+              <li>• Advisory &amp; Programme Design</li>
+              <li>• Evaluation &amp; Impact Assessment</li>
+              <li>• Scientific Due Diligence</li>
+              <li>• Executive Training &amp; Capacity Building</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <button class="btn-luxury px-12n py-4n text-fluid-sm clickable">
+        <i data-lucide="mail" class="w-4 h-4"></i>
+        <span>Request Institutional Brief</span>
+      </button>
+      
+      <div class="mt-16n font-mono text-fluid-xs text-paper/40">
+        <p>NACE Anchor: 72.10 — R&amp;D Natural Sciences &amp; Engineering</p>
+        <p class="mt-2n">Sections M · P · E · K · Fully Remote · ISBN/ISSN/ORCID/DOI/ROR Indexing</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-subtle py-8n px-8n">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4n">
+      <span class="font-mono text-fluid-xs text-paper/40">
+        Dr. Adanela Musaraj — Scientific-Policy-Finance Interface Consultant
+      </span>
+      <span class="font-mono text-fluid-xs text-paper/40">
+        High-Stakes Knowledge Arbitrage · Health · Biotech · Education · Food Systems
+      </span>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Custom Cursor Logic
+    const cursor = document.getElementById('customCursor');
+    const clickableElements = document.querySelectorAll('.clickable, a, button, [role="button"]');
+    
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    clickableElements.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+    });
+
+    // Staggered Reveal on Scroll
+    const revealElements = document.querySelectorAll('.reveal-stagger');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+    
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Mobile menu toggle (basic implementation)
+    const menuBtn = document.querySelector('.md\\:hidden [aria-label="Menu"]');
+    const nav = document.querySelector('nav .hidden.md\\:flex');
+    if (menuBtn && nav) {
+      menuBtn.addEventListener('click', () => {
+        nav.classList.toggle('hidden');
+        nav.classList.toggle('flex');
+        nav.classList.toggle('flex-col');
+        nav.classList.toggle('absolute');
+        nav.classList.toggle('top-full');
+        nav.classList.toggle('left-0');
+        nav.classList.toggle('right-0');
+        nav.classList.toggle('bg-ink');
+        nav.classList.toggle('p-8n');
+        nav.classList.toggle('border-t');
+        nav.classList.toggle('border-subtle');
+      });
+    }
+  </script>
 </body>
 </html>
